@@ -31,8 +31,9 @@ export default defineConfig({
           "src/product_pages/northface-talus-4.html",
         ),
         */
-
+      
       },
     },
   },
 });
+  
