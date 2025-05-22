@@ -1,7 +1,11 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 
-const dataSource = new ProductData("tents");
+import {getParam} from "./utils.mjs";
+
+const category = getParam("category");
+
+const dataSource = new ProductData(category);
 
 const listElement = document.querySelector(".product-list");
 
