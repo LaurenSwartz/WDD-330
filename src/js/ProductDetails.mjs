@@ -17,7 +17,8 @@ export default class ProductDetail{
 
         const productImageElement = document.querySelector(".product-detail img.divider");
 
-        productImageElement.src = this.product.Image;
+        const imageUrls = Object.values(this.product.Images).flat();
+        productImageElement.src = imageUrls[3];
         productImageElement.alt = this.product.Name;
 
 

@@ -9,6 +9,6 @@ const dataSource = new ProductData(category);
 
 const listElement = document.querySelector(".product-list");
 
-const productList = new ProductList("Tents", dataSource, listElement);
+const productList = new ProductList(category, dataSource, listElement);
 
 productList.init();
