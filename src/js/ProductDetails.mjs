@@ -37,7 +37,7 @@ export default class ProductDetail{
         descriptionElement.innerHTML = this.product.DescriptionHtmlSimple;
 
 
-
+        document.getElementById("addToCart").setAttribute("data-id", this.productId);
         document.getElementById("addToCart")
             .addEventListener("click", this.addProductToCart.bind(this));
 

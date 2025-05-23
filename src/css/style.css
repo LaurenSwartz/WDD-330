@@ -249,6 +249,7 @@ button {
   /* max-height: 120px; */
   align-items: center;
   position: relative;
+  padding-top: 1.2rem;
 }
 
 .remove-btn {

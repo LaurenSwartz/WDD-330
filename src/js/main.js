@@ -6,6 +6,8 @@ import {getParam} from "./utils.mjs";
 const category = getParam("category");
 
 const dataSource = new ProductData(category);
+const listHeader = document.querySelector(".topHeader");
+listHeader.textContent = "Top Products: " + category.charAt(0).toUpperCase() + category.slice(1);
 
 const listElement = document.querySelector(".product-list");
 

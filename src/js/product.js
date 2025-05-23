@@ -11,25 +11,26 @@ const dataSource = new ProductData(category);
 const productDetails = new ProductDetails(productID, dataSource);
 productDetails.init();
 
-function addProductToCart(product) {
-  const cartItems = getLocalStorage("so-cart") || [];
-  cartItems.push(product);
-  setLocalStorage("so-cart", cartItems);
-}
+// function addProductToCart(product) {
+//   const cartItems = getLocalStorage("so-cart") || [];
+//   cartItems.push(product);
+//   setLocalStorage("so-cart", cartItems);
+// }
 
 // add to cart button event handler
-async function addToCartHandler(e) {
-  const id = e.target?.dataset?.id;
-  if (!id) {
-    // console.error("No product ID found on button click!");
-    return;
-  }
+// async function addToCartHandler(e) {
+//   const id = e.target?.dataset?.id;
+//   if (!id) {
+//     // console.error("No product ID found on button click!");
+//     return;
+//   }
 
-  const selectedProduct = await dataSource.findProductById(id);
-  addProductToCart(selectedProduct);
-}
+//   const selectedProduct = await dataSource.findProductById(id);
+  
+//   productDetails.addProductToCart(selectedProduct);
+// }
 
-// add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
+// // add listener to Add to Cart button
+// document
+//   .getElementById("addToCart")
+//   .addEventListener("click", addToCartHandler);
