@@ -10,7 +10,20 @@ productDetails.init();
 
 function addProductToCart(product) {
   const cartItems = getLocalStorage("so-cart") || [];
-  cartItems.push(product);
+  
+  const existingIndex = cartItems.findIndex(item => item.Id === product.Id);
+
+  if (existingIndex !== 1) {
+    // If exist, increase the quantity
+    if (!cartItems[existingIndex].quantity) {
+      cartItems[existingIndex].quantity = 1;
+    }
+    cartItems[existingIndex].quantity += 1;
+  } else {
+    // If doens't exist, only add 1 quantity
+    product.quantity = 1;
+    cartItems.push(product);
+  }
   setLocalStorage("so-cart", cartItems);
 }
 
