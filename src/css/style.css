@@ -281,6 +281,18 @@ button {
   grid-column: 3;
 }
 
+.discount-hero-msg {
+  font-size: 0.9rem;
+  color: #b30000;
+  background-color: #fff3f3;
+  padding: 0.5em;
+  border-left: 4px solid #b30000;
+  margin-top: 1em;
+  font-weight: 600;
+  border-radius: 4px;
+  max-width: 30ch;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
