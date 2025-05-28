@@ -8,7 +8,8 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src = "../js/CheckoutProcess.mjs" type = "module"></script>
   </head>
 
   <body>
@@ -60,6 +61,58 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+
+      <div>
+         <h2>Checkout</h2>
+        <div class="container">
+          <form id="checkoutForm">
+            <div class="section-title">Customer Name</div>
+            <label>First Name
+              <input type="text" name="firstName" required>
+            </label>
+            <label>Last Name
+              <input type="text" name="lastName" required>
+            </label>
+      
+            <div class="section-title">Address</div>
+            <label>Street Address
+              <input type="text" name="streetAddress" required>
+            </label>
+            <label>City
+              <input type="text" name="city" required>
+            </label>
+            <label>State
+              <input type="text" name="state" required>
+            </label>
+            <label>Zip Code
+              <input type="text" name="zipCode" required>
+            </label>
+      
+            <div class="section-title">Payment</div>
+            <label>Credit Card Number
+              <input type="text" name="ccNumber" required>
+            </label>
+            <label>Expiration Date (MM/YY)
+              <input type="text" name="expDate" required>
+            </label>
+            <label>Security Code
+              <input type="text" name="securityCode" required>
+            </label>
+      
+            <button type="submit">Checkout</button>
+          </form>
+      
+          <div class="order-summary">
+            <div class="section-title">Order Summary</div>
+            <div id = "subtotal ">Subtotal: $100.00</div>
+            <div id = "tax">Tax: $8.00</div>
+            <div id = "shipping-estimate">Shipping Estimate: $5.00</div>
+            <hr />
+            <div id = "order-total"><strong>Order Total: $113.00</strong></div>
+          </div>
+        </div>
+      </div>
+
     </main>
 
     <footer>&copy;NOT a real business</footer>
