@@ -6,7 +6,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   constructor(category) {
     this.baseURL = import.meta.env.VITE_SERVER_URL;
     this.category = category;

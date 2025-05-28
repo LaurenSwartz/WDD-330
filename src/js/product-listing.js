@@ -1,11 +1,11 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 
 import {getParam} from "./utils.mjs";
 
 const category = getParam("category");
 
-const dataSource = new ProductData(category);
+const dataSource = new ExternalServices(category);
 const listHeader = document.querySelector(".topHeader");
 listHeader.textContent = "Top Products: " + category.charAt(0).toUpperCase() + category.slice(1);
 
