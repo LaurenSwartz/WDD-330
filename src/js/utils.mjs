@@ -38,3 +38,8 @@ export function renderListWithTemplate(template, parentElement, list, position =
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function renderProductList(products) {
+  const productList = document.querySelector(".product-list");
+  productList.innerHTML = products.map(productCardTemplate).join("");
+}
