@@ -67,10 +67,12 @@ p {
 } s 
 
 .image-container {
+    background-color: yellow;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
-    gap: 20px;  
+    gap: 20px; 
 }
 
 .image-container a{
