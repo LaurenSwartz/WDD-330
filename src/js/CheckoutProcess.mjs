@@ -1,10 +1,9 @@
 
-import { getLocalStorage} from "./utils.mjs";
-
+import { getLocalStorage, alertMessage} from "./utils.mjs";
 
 export class CheckoutProcess {
     constructor() {
-        
+        this.baseURL = import.meta.env.VITE_SERVER_URL;
         this.resultado = this.calculateSubtotal();
         this.tax = 0.06;
         this.subtotal = this.resultado.total;
@@ -30,8 +29,8 @@ export class CheckoutProcess {
 
         const checkoutButton = document.getElementById("checkout-button");
         if (checkoutButton){
-            
-            checkoutButton.addEventListener("click", () => {
+            checkoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
                 const cartItems = getLocalStorage("so-cart") || [];
                 this.packageItens(cartItems)});
         }
@@ -78,10 +77,78 @@ export class CheckoutProcess {
         const cardNumber = document.getElementById("card-number");
         const expiration = document.getElementById("expiration-date");
         const code = document.getElementById("security-code");
+    
+
+        let isValid = true;
+
+        if (!fname.value.trim()) {
+            isValid = false;
+            fname.classList.add("is-invalid");
+            alertMessage("The 'First Name' field is required.", false, "error", 0); 
+        }
+            
+        if (!lname.value.trim()) {
+            isValid = false;
+            lname.classList.add("is-invalid");
+            alertMessage("The 'Last Name' field is required.", false, "error", 0);
+        }
+
+        if (!street.value.trim()) {
+            isValid = false;
+            street.classList.add("is-invalid");
+            alertMessage("The 'Street Address' field is required.", false, "error", 0);
+        }
+
+        if (!city.value.trim()) {
+            isValid = false;
+            city.classList.add("is-invalid");
+            alertMessage("The 'City' field is required.", false, "error", 0);
+        }
+
+        if (!state.value.trim()) {
+            isValid = false;
+            state.classList.add("is-invalid");
+            alertMessage("The 'State' field is required.", false, "error", 0);
+        }
+
+        if (!zipcode.value.trim()) {
+            isValid = false;
+            zipcode.classList.add("is-invalid");
+            alertMessage("The 'Zip Code' field is required.", false, "error", 0);
+        }
+
+        if (!cardNumber.value.trim() || cardNumber.value.trim().length < 16) {
+            isValid = false;
+            cardNumber.classList.add("is-invalid");
+            alertMessage("The 'Card Number' field is invalid. It must be 16 digits.", false, "error", 0);
+        }
+
+        if (!expiration.value.trim()) {
+            isValid = false;
+            expiration.classList.add("is-invalid");
+            alertMessage("The 'Expiration Date' field is required.", false, "error", 0);
+        }
+
+        if (!code.value.trim() || code.value.trim().length < 3) {
+            isValid = false;
+            code.classList.add("is-invalid");
+            alertMessage("The 'Security Code' field is invalid. It must be at least 3 digits.", false, "error", 0);
+        }
+
+        // If any validation failed, stop execution
+        if (!isValid) {
+            // Optionally, if you want a general message AND individual ones, you can add one here.
+            // For example: alertMessage("Please correct the highlighted errors.", true, "info", 5000);
+            
+            // Ensure the scroll to top happens only once if any alert is shown
+            window.scrollTo({ top: 0, behavior: "smooth" }); 
+            return; // Stops function execution
+        }
 
         const items = this.groupCartItems(cartItems);
 
         
+
         const checkoutJson = `{
             "orderDate": "${date}",
             "fname": "${fname.value}",
@@ -127,10 +194,8 @@ export class CheckoutProcess {
 
     // --- Função para enviar o pedido ---
     async sendOrderToBackend(orderData) {
-        const serviceUrl = `http://wdd330-backend.onrender.com/checkout/`;
-
         try {
-            const response = await fetch(serviceUrl, {
+            const response = await fetch(`${this.baseURL}checkout`, {
                 method: "POST", // Definindo o método HTTP como POST
                 headers: {
                     "Content-Type": "application/json" // Informando ao servidor que estamos enviando JSON
@@ -143,14 +208,11 @@ export class CheckoutProcess {
             // Verifica se a resposta da requisição foi bem-sucedida (status 2xx)
             if (response.ok) {
                 const result = await response.json(); // Se o servidor retornar JSON na resposta
-                console.log("Request sent successfully! Server response:", result);
-                alert();
+                alert("Request sent successfully! Server response");
                 // Aqui você pode adicionar lógica para limpar o carrinho, redirecionar o usuário, etc.
             } else {
                 // Se a resposta não foi bem-sucedida (ex: 400, 404, 500)
                 const errorData = await response.json(); // Tenta ler o corpo da resposta como JSON de erro
-                console.error("Your order has been sent successfully!", response.status, response.statusText);
-                console.error("Server error details:", errorData);
                 alert(`Failed to send request: ${errorData.message || "Unknown error" }`);
             }
         } catch (error) {

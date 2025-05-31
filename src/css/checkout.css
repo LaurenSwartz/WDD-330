@@ -1,6 +1,20 @@
-/* Variáveis para cores e tamanhos */
 
+.is-invalid {
+    border: 1px solid #dc3545 !important; /* Vermelho forte */
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important; /* Sombra suave vermelha */
+}
 
+/* Garante que a borda vermelha persista mesmo quando o campo está focado */
+.is-invalid:focus {
+    border-color: #dc3545; /* Mantém a borda vermelha no foco */
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); /* Mantém a sombra vermelha no foco */
+}
+
+/* Opcional: Estilo para o placeholder de campos inválidos (para melhor visibilidade) */
+.is-invalid::placeholder {
+    color: #dc3545; /* Altera a cor do texto do placeholder para vermelho */
+    opacity: 0.7; /* Torna o placeholder um pouco mais visível */
+}
 .container {
     display: flex;
     flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
@@ -129,6 +143,97 @@
     font-size: 1.2em;
     font-weight: bold;
     color: var(--primary-color);
+}
+
+#alert-container {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    pointer-events: none; 
+    display: none; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 10px 0; 
+}
+/* Estilo básico do alerta */
+.alert {
+    display: flex;
+    justify-content: space-between; /* Mensagem à esquerda, X à direita */
+    align-items: center;
+    background-color: #f8d7da; /* Cor de fundo padrão (erro) */
+    color: #721c24; /* Cor do texto padrão (erro) */
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 10px; /* Espaço entre múltiplos alertas */
+    width: 80%; /* Largura do alerta */
+    max-width: 600px; /* Largura máxima */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    pointer-events: auto; /* Permite cliques no alerta em si */
+    opacity: 0; /* Começa invisível */
+    transform: translateY(-20px); /* Começa um pouco acima */
+    animation: fadeInDown 0.3s ease-out forwards; /* Animação de entrada */
+}
+
+/* Modificadores para tipos de alerta */
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+}
+
+/* Estilo da mensagem de texto */
+.alert-message {
+    flex-grow: 1; /* Faz a mensagem ocupar o espaço disponível */
+    margin-right: 15px; /* Espaço entre a mensagem e o botão de fechar */
+}
+
+/* Estilo do botão de fechar (o 'X') */
+.alert-close {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: inherit; /* Herda a cor do texto do alerta */
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1; /* Garante que o X fique centralizado verticalmente */
+    transition: color 0.2s ease;
+}
+
+.alert-close:hover {
+    color: #000; /* Escurece o X ao passar o mouse */
+}
+
+/* Animações */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }
 
 /* Media Queries para Responsividade */

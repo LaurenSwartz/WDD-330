@@ -1,8 +1,14 @@
-function convertToJson(res) {
+async function convertToJson(res) {
+  const data = await res.json();
   if (res.ok) {
-    return res.json();
+    return data;
   } else {
-    throw new Error("Bad Response");
+    const error = new Error(`HTTP error! Status: ${res.status}`);
+    error.name = "servicesError";
+    error.message = data;
+    error.statusCode = res.status;
+    error.body = data;
+    throw error;
   }
 }
 
