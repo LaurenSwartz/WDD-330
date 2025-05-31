@@ -8,6 +8,8 @@
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
 
+  --border-color: black;
+
   /* sizes */
   --font-base: 18px;
   --small-font: 0.8em;
@@ -36,9 +38,68 @@ header {
   padding: 0.5rem;
 }
 
-p {
-  padding: 0.75rem;
+main {
+    padding: 20px;
 }
+p {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block; /* Permite definir largura/altura e paddings */
+    padding: 10px 20px;
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    border: none;
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Cor de fundo mais escura ao passar o mouse */
+} s 
+
+.image-container {
+    background-color: yellow;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px; 
+}
+
+.image-container a{
+  text-decoration: none;
+  color: inherit; /* Mantém a cor original do texto */
+}
+
+.image-item {
+    width: 23%; /* 4 imagens lado a lado na widescreen */
+    text-align: center;
+}
+
+.image-item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.image-item label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+
 
 .logo {
   line-height: 60px;
@@ -211,6 +272,7 @@ button {
   /* max-height: 120px; */
   align-items: center;
   position: relative;
+  padding-top: 1.2rem;
 }
 
 .remove-btn {
@@ -279,7 +341,21 @@ button {
   }
 }
 
+/* Responsivo para telas menores */
+@media (max-width: 499px) {
+    .image-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-item {
+        width: 80%; /* Ajusta largura em telas menores */
+    }
+}
+
 footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+        

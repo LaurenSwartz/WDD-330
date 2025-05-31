@@ -40,10 +40,11 @@ function setTotal(items) {
 }
 
 function cartItemTemplate(item, index) {
+  const imageUrls = Object.values(item.Images).flat();
   return `<li class="cart-card divider">
     <button class="remove-btn" data-index="${index}">❌ Remove</button>
     <a href="#" class="cart-card__image">
-      <img src="${item.Image}" alt="${item.Name}" />
+      <img src="${imageUrls[2]}" alt="${item.Name}" />
     </a>
     <a href="#">
       <h2 class="card__name">${item.Name}</h2>

@@ -1,16 +1,33 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  return `
-    <li class="product-card">
-      <a href="product_pages/?products=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}">
-        <h2>${product.Brand.Name}</h2>
-        <h3>${product.Name}</h3>
-        <p class="product-card__price">$${product.FinalPrice}</p>
-      </a>
-    </li>
-    `;
+  const imageUrls = Object.values(product.Images).flat();
+  if (product.FinalPrice < product.SuggestedRetailPrice){
+     return `
+        <li class="product-card">
+          <a href="../product_pages/index.html?product=${product.Id}&category=${product.Category}">
+            <img src="${imageUrls[1]}" alt="${product.Name}">
+            <h2>${product.Brand.Name}</h2>
+            <h3>${product.Name}</h3>
+            <p class="product-card__price">$${product.FinalPrice}</p>
+            <p class="product-card__price">discount of: $${Number((product.SuggestedRetailPrice - product.FinalPrice).toPrecision(4))}</p>
+          </a>
+        </li>
+    `; 
+  }
+  else {
+    return `
+      <li class="product-card">
+        <a href="../product_pages/index.html?product=${product.Id}&category=${product.Category}">
+          <img src="${imageUrls[1]}" alt="${product.Name}">
+          <h2>${product.Brand.Name}</h2>
+          <h3>${product.Name}</h3>
+          <p class="product-card__price">$${product.FinalPrice}</p>
+        </a>
+      </li>
+      `;
+  }
+  
 }
 
 export default class ProductList {
@@ -21,7 +38,7 @@ export default class ProductList {
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
   }
 

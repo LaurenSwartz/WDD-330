@@ -8,18 +8,19 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/checkout.css" />
+
+    <script src="../js/CheckoutProcess.mjs" type="module"></script>
+    
   </head>
 
   <body>
     <header class="divider">
       <div class="logo">
-        <img src="images/noun_Tent_2517.svg" alt="tent image for logo" />
+        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
 
-        <a href="index.html">
-          Sleep
-          <span class="highlight">Outside</span>
-        </a>
+        <a href="../index.html"> Sleep<span class="highlight">Outside</span></a>
       </div>
 
       <div class="cart">
@@ -57,10 +58,84 @@
     </header>
 
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
+        <section class="products">
+          <h2>Review & Place your Order</h2>
+        </section>
+        
+        <div class="container">
+            <form class="checkout-form">
+                <h2>Client Information</h2>
+                <div class="form-group">
+                    <label for="first-name">Name:</label>
+                    <input type="text" id="first-name" name="firstName" required placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="lastName" required placeholder="Last Name">
+                </div>
+
+                <h2>Street Address</h2>
+                <div class="form-group">
+                    <label for="street-address">Street Address:</label>
+                    <input type="text" id="street-address" name="streetAddress" required placeholder="123 Main St">
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required placeholder="New York">
+                </div>
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <input type="text" id="state" name="state" required placeholder="NY">
+                    </div>
+                    <div class="form-group">
+                        <label for="zip-code">Zip Code:</label>
+                        <input type="text" id="zip-code" name="zipCode" required pattern="[0-9]{5}-?[0-9]{3}|[0-9]{8}" title="Format: XXXXX-XXX or XXXXXXXX" placeholder="12345 or 12345-678">
+                    </div>
+                </div>
+
+                <h2>Payment Information</h2>
+                <div class="form-group">
+                    <label for="card-number">Credit Card Number:</label>
+                    <input type="text" id="card-number" name="cardNumber" required pattern="[0-9]{13,16}" title="13 to 16 numeric digits" placeholder="XXXX-XXXX-XXXX-XXXX">
+                </div>
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="expiration-date">Expiration Date (MM/YY):</label>
+                        <input type="text" id="expiration-date" name="expirationDate" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/?([0-9]{2})" title="Format: MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="security-code">Security Code (CVV):</label>
+                        <input type="text" id="security-code" name="securityCode" required pattern="[0-9]{3,4}" title="3 or 4 numeric digits" placeholder="XXX or XXXX">
+                    </div>
+                </div>
+
+                <button  class="checkout-button" id = "checkout-button">Complete Order</button>
+            </form>
+
+            <aside class="order-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-item">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Taxes:</span>
+                    <span id="tax">R$ 0,00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping Estimate:</span>
+                    <span id="shipping-estimate">R$ 0,00</span>
+                </div>
+                <div class="summary-total">
+                    <span>Order Total:</span>
+                    <span id="order-total">R$ 0,00</span>
+                </div>
+            </aside>
+        </div>  
+
     </main>
+    
 
     <footer>&copy;NOT a real business</footer>
   </body>
