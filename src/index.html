@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="../js/newsletter.js"></script>
   </head>
 
   <body>
@@ -91,6 +92,47 @@
             </div>
         </div>
       </section>
+       <form id="subscriptionForm">
+        <div class="container">
+          <h2>Sign up for our Newsletter</h2>
+        </div>
+
+        <div class="container" style="background-color: white">
+          <!-- Your form fields go here -->
+          <input type="text" placeholder="Name: John" name="name" required />
+          <input
+            type="text"
+            placeholder="surname: Doe"
+            name="surname"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Email: johndoe@gmail.com"
+            name="email"
+            required
+          />
+
+          <div class="checkbox-container">
+            <label>
+              <input
+                class="subscribe"
+                type="checkbox"
+                checked="checked"
+                name="subscribe"
+              />
+              Send me the Newsletter
+            </label>
+          </div>
+        </div>
+
+        <div class="container">
+          <button type="button" id="subscribeButton">Subscribe</button>
+        </div>
+        <div id="subscriptionMessage" class="container">
+          You have subscribed successfully!
+        </div>
+      </form>
     </main>
     <footer>
       &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway
